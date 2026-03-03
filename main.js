@@ -13,6 +13,7 @@ const tbl = document.getElementById("tblNumbers");
 
 
 let total = 0;
+let sortValue = "";
 
 
 let numbersArr = new Array();
@@ -34,8 +35,15 @@ function insertNumber() {
         document.getElementById("txtNum").value = "";
         return;
     }
+    console.log(sortValue);
 
-    iterateNumbers();
+    if(!(sortValue == "")){
+        sortingAlgorithm(sortValue);
+        return;
+    }
+    else {
+        iterateNumbers();
+    }
 }
 
 btn1.addEventListener("click", () => {
@@ -61,7 +69,10 @@ btn3.addEventListener("click", () => {
         tbl.removeChild(tbl.firstChild);
     }
 
-    document.getElementById("btn4").style.display = "none";
+    btn3.style.display = "none";
+    btn4.style.display = "none";
+    btn5.style.display = "none";
+    sortBlock.style.display = "none";
 
 });
 
@@ -90,7 +101,7 @@ btn5.addEventListener("click", () => {
 });
 
 sortNumbers.addEventListener("change", () => {
-    const sortValue = sortNumbers.value;
+    sortValue = sortNumbers.value;
 
     sortingAlgorithm(sortValue);
 });
@@ -160,7 +171,6 @@ function editNumber(i) {
 function sortingAlgorithm(sort){
     let n = numbersArr.length;
 
-
     // Uses insertion sort algorithm
 
     if(sort == "ascending"){
@@ -201,7 +211,6 @@ function iterateNumbers() {
     }
 
     if(!(numbersArr.length == 0)) {
-
         total = 0;
 
         console.log(`Array Length: ${numbersArr.length}`);
